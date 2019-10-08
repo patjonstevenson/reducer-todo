@@ -12,7 +12,7 @@ function App() {
   const [state, dispatch] = useReducer(reducer, {
     todos: localStorage.getItem("todos")
       ? JSON.parse(localStorage.getItem("todos"))
-      : []
+      : initialState.todos
   });
 
   useEffect(() => {

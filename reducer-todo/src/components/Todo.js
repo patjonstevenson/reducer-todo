@@ -1,5 +1,6 @@
 import React, { useReducer } from 'react';
 
+
 const Todo = ({ todo, dispatch }) => {
 
     return (
@@ -11,6 +12,7 @@ const Todo = ({ todo, dispatch }) => {
             })}
         >
             <h3>{todo.item}</h3>
+            <p>{todo.id}</p>
         </div>
     )
 }

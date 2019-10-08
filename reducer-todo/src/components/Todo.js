@@ -13,6 +13,7 @@ const Todo = ({ todo, dispatch }) => {
         >
             <h3>{todo.item}</h3>
             <p>{todo.id}</p>
+            {todo.completed && <p>{`Completed: ${todo.completionTime}`}</p>}
         </div>
     )
 }

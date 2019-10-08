@@ -8,7 +8,8 @@ export const reducer = (state, action) => {
                 todos: [...state.todos, {
                     item: action.payload,
                     completed: false,
-                    id: moment().format("MMM Do YYYY, h:mm:ss a")
+                    id: moment().format("MMM Do YYYY, h:mm:ss a"),
+                    completionTime: ""
                 }]
             }
         case "TOGGLE_COMPLETED":
@@ -17,7 +18,8 @@ export const reducer = (state, action) => {
                 todos: [...state.todos.filter(todo => todo.id !== action.payload.id),
                 {
                     ...action.payload,
-                    completed: !state.completed
+                    completed: !state.completed,
+                    completionTime: moment().format("MMM Do YYYY, h:mm:ss a")
                 }]
             }
         case "CLEAR_COMPLETED":

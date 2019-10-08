@@ -1,24 +1,29 @@
-import React from 'react';
+import React, { useReducer, useEffect } from 'react';
+// Reducers
+import { reducer, initialState } from "./reducers/reducer";
+// Components
+import TodoList from "./components/TodoList";
+import TodoForm from "./components/TodoForm";
+// Other
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const [state, dispatch] = useReducer(reducer, {
+    todos: localStorage.getItem("todos")
+      ? JSON.parse(localStorage.getItem("todos"))
+      : []
+  });
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(state.todos));
+  }, [state]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Todo App</h1>
+      <TodoForm dispatch={dispatch} />
+      <TodoList state={state} dispatch={dispatch} />
     </div>
   );
 }
